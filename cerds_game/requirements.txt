@@ -1,0 +1,10 @@
+Django>=4.0
+daphne
+channels
+channels_redis
+psycopg2
+django-cors-headers
+django-environ
+python-decouple
+djangorestframework
+requests

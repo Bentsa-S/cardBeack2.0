@@ -16,4 +16,4 @@ from .up_bet_trun import up_bet_trun
 from .pass_trun import pass_trun
 from .look_card_trun import look_card_trun
 from .restart import restart
-from ...durack_cards.service.remove_player_room import remove_player_room
+from .remove_player_room import remove_player_room
