@@ -15,7 +15,7 @@ RUN pip install --upgrade pip && pip install \
     daphne \
     channels \
     channels_redis \
-    psycopg2 \
+    psycopg2-binary \
     django-cors-headers \
     django-environ \
     python-decouple \
@@ -26,4 +26,4 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "python manage.py migrate && daphne -b 0.0.0.0 -p 8000 cerds_game.asgi:application"]
+CMD ["sh", "-c", "daphne -b 0.0.0.0 -p 8000 cerds_game.asgi:application"]
