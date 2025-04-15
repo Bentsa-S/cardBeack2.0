@@ -11,19 +11,18 @@ def create_user(request):
     try:
         user_name = request.POST.get('user_name')
         user_id = request.POST.get('id_user')
-        
-        # Перевірка на наявність необхідних параметрів
+
         if not user_name or not user_id:
             return JsonResponse({'error': 'Необхідні параметри user_name та id_user'}, status=400)
 
-        # Перевірка, чи вже існує користувач з таким ID
-        if Player.objects.filter(user_id=user_id).exists():
-            return JsonResponse({'message': 'Користувач вже існує'}, status=200)
+        if not Player.objects.filter(user_id=user_id).exists():
+            Player.objects.create(name=user_name, user_id=user_id, prise=1000)
 
-        # Створення нового користувача
-        player = Player.objects.create(name=user_name, user_id=user_id, prise=1000)
-        return JsonResponse({'message': 'Користувач успішно створений'}, status=201)
-    
+        # Отримати всіх користувачів
+        all_players = Player.objects.all().values('id', 'name', 'user_id', 'prise')
+        print(all_players)
+        return JsonResponse({'message': 'OK'}, status=200)
+
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
     

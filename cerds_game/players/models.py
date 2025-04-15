@@ -2,7 +2,7 @@ from django.db import models
 
 class Player(models.Model):
     name = models.CharField(max_length=100)
-    user_id = models.IntegerField(default=0)
+    user_id = models.IntegerField(default=0, unique=True)
     prise = models.IntegerField(default=0)
     friends = models.ManyToManyField('self', symmetrical=False, blank=True)
 

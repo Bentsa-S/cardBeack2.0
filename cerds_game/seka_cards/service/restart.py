@@ -20,7 +20,8 @@ async def restart(self, room_id, number_player, bet):
 
     for player in player_order:
         player.update({"trun": 0, "pass": False, "bleack": True, "GameRound": 0})
-
+        print(player['name_room'])
+    
     for player in player_cards_order:
         player["cards"] = []
 

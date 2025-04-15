@@ -68,6 +68,8 @@ async def putch_start_trun (self, room_id, number_player):
 
 
     player_order_trun = next((player for player in players if player.trun == 4), None)
+    print(player_order_trun)
+    print(players)
     player = next((player for player in player_order if player_order_trun.name_room == player['name_room']), None)
 
     if number_player == 2:

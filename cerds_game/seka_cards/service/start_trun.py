@@ -14,7 +14,8 @@ async def start_trun (self, room_id, nymber_player):
     random_player = random.randint(1, nymber_player)
 
     player = next((player for player in player_order if player['number'] == random_player), None)
-
+    print(player)
+    print(000000000000000)
     
     for p in players:
         if p.name_room == player['name_room']:

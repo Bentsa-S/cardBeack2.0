@@ -18,7 +18,7 @@ async def play_trun (self, room_id, number_player):
 
     player["GameRound"] += 1
 
-    playerDatabase = await database_sync_to_async(Player.objects.get)(id=player_order_trun.player_id)
+    playerDatabase = await database_sync_to_async(Player.objects.get)(user_id=player_order_trun.player_id)
     playerDatabase.prise -= bet
     room.bank += bet
 

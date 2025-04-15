@@ -11,7 +11,6 @@ async def redy_take_trun (self, room_id, number_player):
     players = await database_sync_to_async(list)(room.players.all())
     player_order = room.player_order
 
-
     player_order_trun = next((player for player in players if player.trun == 1), None)
     player = next((player for player in player_order if player_order_trun.name_room == player['name_room']), None)
 
