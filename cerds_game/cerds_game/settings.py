@@ -97,11 +97,11 @@ WSGI_APPLICATION = 'cerds_game.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('POSTGRES_DB', default='gameDurack'),
+        'NAME': config('POSTGRES_DB', default='railway'),
         'USER': config('POSTGRES_USER', default='postgres'),
-        'PASSWORD': config('POSTGRES_PASSWORD', default='1234'),
-        'HOST': 'db',
-        'PORT': '5432',
+        'PASSWORD': config('POSTGRES_PASSWORD', default='NVvEuBWvdxxcDnVIIdExUhIvdVuLircG'),
+        'HOST': config('POSTGRES_HOST', default='trolley.proxy.rlwy.net'),
+        'PORT': config('POSTGRES_PORT', default='42898'),
     }
 }
 
@@ -112,7 +112,7 @@ CACHES = {
     }
 }
 
-REDIS_URL = 'redis://redis:6379'
+REDIS_URL = config('REDIS_URL', default='redis://default:WlkLTxmrvhHHbwuohayLfOPRjCBHgonE@gondola.proxy.rlwy.net:37347')
 
 
 CHANNEL_LAYERS = {
