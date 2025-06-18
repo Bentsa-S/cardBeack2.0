@@ -1,0 +1,2 @@
+web: daphne -b 0.0.0.0 -p $PORT cerds_game.asgi:application
+release: python manage.py migrate 
