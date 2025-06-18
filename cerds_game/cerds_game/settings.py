@@ -31,11 +31,7 @@ ALLOWED_HOSTS = ['*']
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "http://localhost:5173",
-    "http://localhost:5174",
-    "https://3624-194-39-227-109.ngrok-free.app",
+    "https://02ef-194-44-136-166.ngrok-free.app",
 ]
 
 # Application definition
