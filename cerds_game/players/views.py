@@ -105,8 +105,8 @@ def send_telegram_message(request):
         room = data.get('roomId')
         bet = data.get('bet')
         game = data.get('game')
-        text = 'є таблетка од голови'
-        url_link = f'https://65a0-194-39-227-125.ngrok-free.app/{game}/{players}/{room}/{bet}'
+        text = 'ходімо грати'
+        url_link = f'https://cardbeack20-production.up.railway.app/{game}/{players}/{room}'
         inline_keyboard = {
             "inline_keyboard": [
                 [{"text": "Перейти на сайт","web_app": {"url": url_link}}]
