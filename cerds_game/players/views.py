@@ -100,7 +100,7 @@ TELEGRAM_TOKEN = '7135455707:AAHFXcfiiJaJArustu4kEAnxRwty6h4VM9M'
 def send_telegram_message(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        id = 938231668
+        id = data.get('id_user')
         players = data.get('numberPlayer')
         room = data.get('roomId')
         bet = data.get('bet')
