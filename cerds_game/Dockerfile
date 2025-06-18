@@ -20,7 +20,8 @@ RUN pip install --upgrade pip && pip install \
     django-environ \
     python-decouple \
     djangorestframework \
-    requests
+    requests \
+    gunicorn
 
 COPY . .
 
