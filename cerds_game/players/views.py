@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Player
 import json
 import requests
-
+from decouple import config
 
 @csrf_exempt
 def create_user(request):
@@ -94,7 +94,6 @@ def remove_friend_view(request):
             return JsonResponse({'error': 'Користувача не знайдено'}, status=404)
 
 
-TELEGRAM_TOKEN = '7135455707:AAHFXcfiiJaJArustu4kEAnxRwty6h4VM9M'
 
 @csrf_exempt
 def send_telegram_message(request):
@@ -106,14 +105,14 @@ def send_telegram_message(request):
         bet = data.get('bet')
         game = data.get('game')
         text = 'ходімо грати'
-        url_link = f'https://02ef-194-44-136-166.ngrok-free.app/{game}/{players}/{room}'
+        url_link = config('WEB_URL') + f'/{game}/{players}/{room}'
         inline_keyboard = {
             "inline_keyboard": [
                 [{"text": "Перейти на сайт","web_app": {"url": url_link}}]
             ]
         }
 
-        url = f'https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage'
+        url = f'https://api.telegram.org/bot{config('TELEGRAM_TOKEN')}/sendMessage'
         payload = {'chat_id': id, 'text': text, 'reply_markup': json.dumps(inline_keyboard)}
         r = requests.post(url, data=payload)
 
