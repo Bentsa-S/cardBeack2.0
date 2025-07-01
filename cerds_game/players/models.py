@@ -5,6 +5,7 @@ class Player(models.Model):
     user_id = models.IntegerField(default=0, unique=True)
     prise = models.IntegerField(default=0)
     friends = models.ManyToManyField('self', symmetrical=False, blank=True)
+    avatar = models.CharField(max_length=255, default='default_avatar.png')
 
     def __str__(self):
         return self.name
@@ -21,7 +22,6 @@ class Player(models.Model):
             return False
 
     def remove_friend(self, friend_user_id):
-
         friend = Player.objects.get(user_id=friend_user_id)
         if friend in self.friends.all():
             self.friends.remove(friend)
