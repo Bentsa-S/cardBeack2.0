@@ -30,7 +30,7 @@ async def add_player_room(self, json, room_id, number):
                 "id": json.get('id'),
                 "pass": False,
                 "prise": playerDatabase.prise,
-                "avatar": playerDatabase.avatar
+                "avatar": json.get('avatar')
             }
             break  # Stop after filling the first None
 
