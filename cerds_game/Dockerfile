@@ -18,7 +18,7 @@ RUN pip install --upgrade pip && pip install \
     psycopg2-binary \
     django-cors-headers \
     django-environ \
-    python_decouple \
+    python-decouple \
     djangorestframework \
     requests \
     gunicorn
