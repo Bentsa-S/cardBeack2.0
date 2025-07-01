@@ -98,23 +98,47 @@ def remove_friend_view(request):
 @csrf_exempt
 def send_telegram_message(request):
     if request.method == "POST":
-        data = json.loads(request.body)
-        id = data.get('id_user')
-        players = data.get('numberPlayer')
-        room = data.get('roomId')
-        bet = data.get('bet')
-        game = data.get('game')
-        text = 'ходімо грати'
-        url_link = config('WEB_URL') + f'/{game}/{players}/{room}'
-        inline_keyboard = {
-            "inline_keyboard": [
-                [{"text": "Перейти на сайт","web_app": {"url": url_link}}]
-            ]
-        }
+        try:
+            data = json.loads(request.body)
+            id = data.get('id_user')
+            players = data.get('numberPlayer')
+            room = data.get('roomId')
+            bet = data.get('bet')
+            game = data.get('game')
 
-        url = f'https://api.telegram.org/bot{config("TELEGRAM_TOKEN")}/sendMessage'
-        payload = {'chat_id': id, 'text': text, 'reply_markup': json.dumps(inline_keyboard)}
-        r = requests.post(url, data=payload)
+            # Validate required parameters
+            if not all([id, players, room, game]):
+                return JsonResponse({
+                    'error': 'Missing required parameters. Need id_user, numberPlayer, roomId, and game'
+                }, status=400)
 
-        return JsonResponse({'status': 'ok', 'telegram_response': r.json()})
-    return JsonResponse({'error': 'Invalid request'}, status=400)
+            text = 'ходімо грати'
+            url_link = config('WEB_URL', default='https://02ef-194-44-136-166.ngrok-free.app') + f'/{game}/{players}/{room}'
+            inline_keyboard = {
+                "inline_keyboard": [
+                    [{"text": "Перейти на сайт","web_app": {"url": url_link}}]
+                ]
+            }
+
+            url = f'https://api.telegram.org/bot{config("TELEGRAM_TOKEN", default="7135455707:AAHFXcfiiJaJArustu4kEAnxRwty6h4VM9M")}/sendMessage'
+            payload = {'chat_id': id, 'text': text, 'reply_markup': json.dumps(inline_keyboard)}
+            
+            r = requests.post(url, data=payload)
+            response_json = r.json()
+            
+            if not r.ok:
+                return JsonResponse({
+                    'error': 'Telegram API error',
+                    'details': response_json.get('description', 'Unknown error')
+                }, status=r.status_code)
+
+            return JsonResponse({'status': 'ok', 'telegram_response': response_json})
+            
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON in request body'}, status=400)
+        except requests.RequestException as e:
+            return JsonResponse({'error': f'Network error: {str(e)}'}, status=503)
+        except Exception as e:
+            return JsonResponse({'error': f'Unexpected error: {str(e)}'}, status=500)
+            
+    return JsonResponse({'error': 'Invalid request method. Use POST.'}, status=405)
