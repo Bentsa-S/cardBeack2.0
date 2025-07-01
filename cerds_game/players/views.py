@@ -122,7 +122,6 @@ def send_telegram_message(request):
 
             url = f'https://api.telegram.org/bot{config("TELEGRAM_TOKEN", default="7135455707:AAHFXcfiiJaJArustu4kEAnxRwty6h4VM9M")}/sendMessage'
             payload = {'chat_id': id, 'text': text, 'reply_markup': json.dumps(inline_keyboard)}
-            
             r = requests.post(url, data=payload)
             response_json = r.json()
             
