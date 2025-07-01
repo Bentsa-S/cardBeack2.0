@@ -1,3 +1,12 @@
+#!/bin/sh
+
+# Wait for PostgreSQL to be ready
+echo "Waiting for PostgreSQL..."
+while ! nc -z $POSTGRES_HOST $POSTGRES_PORT; do
+  sleep 1
+done
+echo "PostgreSQL is ready!"
+
 echo "Making migrations..."
 python manage.py makemigrations
 
@@ -8,5 +17,5 @@ echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
 echo "Starting server with Daphne (WebSocket support)..."
-# Використовуємо PORT змінну Railway або 8000 за замовчуванням
+# Use Railway PORT variable or default to 8000
 daphne -b 0.0.0.0 -p ${PORT:-8000} cerds_game.asgi:application

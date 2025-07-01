@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED=1
 
 RUN apk update && apk add --no-cache \
     gcc musl-dev postgresql-dev python3-dev libffi-dev \
-    cargo jpeg-dev zlib-dev
+    cargo jpeg-dev zlib-dev netcat-openbsd
 
 WORKDIR /app
 
