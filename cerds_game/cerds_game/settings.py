@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['*']
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "https://02ef-194-44-136-166.ngrok-free.app",
-    config('URL_TO_OPEN_CROS')
+    config('URL_TO_OPEN_CROS', default='https://df41-194-44-136-166.ngrok-free.app')
 ]
 
 # Application definition
