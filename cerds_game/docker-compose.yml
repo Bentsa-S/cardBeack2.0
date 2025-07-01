@@ -17,3 +17,6 @@ services:
       - REDIS_URL=redis://default:WlkLTxmrvhHHbwuohayLfOPRjCBHgonE@gondola.proxy.rlwy.net:37347
       - SECRET_KEY=django-insecure-j(-%v-tirk)*uh7nz4pd$cx2=avqs7648pl=ac86^!9#cz-=^0
       - DEBUG=True
+      - TELEGRAM_TOKEN=7135455707:AAHFXcfiiJaJArustu4kEAnxRwty6h4VM9M
+      - WEB_URL=https://df41-194-44-136-166.ngrok-free.app
+      - NGROK_URL=https://df41-194-44-136-166.ngrok-free.app
