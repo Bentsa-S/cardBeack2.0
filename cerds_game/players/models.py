@@ -5,7 +5,7 @@ class Player(models.Model):
     user_id = models.IntegerField(default=0, unique=True)
     prise = models.IntegerField(default=0)
     friends = models.ManyToManyField('self', symmetrical=False, blank=True)
-    avatar = models.CharField(max_length=255, default='default_avatar.png')
+    avatar = models.CharField(max_length=255, default='jjj.png')
 
     def __str__(self):
         return self.name
