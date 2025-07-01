@@ -9,4 +9,3 @@ python-decouple
 djangorestframework
 requests
 gunicorn
-decouple
